@@ -55,10 +55,10 @@ let package = Package(
       name: "FirebaseInAppMessaging",
       targets: ["FirebaseInAppMessagingTarget"]
     ),
-    .library(
-      name: "FirebaseMLModelDownloader",
-      targets: ["FirebaseMLModelDownloaderTarget"]
-    ),
+    // .library(
+    //   name: "FirebaseMLModelDownloader",
+    //   targets: ["FirebaseMLModelDownloaderTarget"]
+    // ),
     .library(
       name: "FirebaseMessaging",
       targets: ["FirebaseMessagingTarget"]
@@ -246,17 +246,17 @@ let package = Package(
         "Resources"
       ]
     ),
-    .target(
-      name: "FirebaseMLModelDownloaderTarget",
-      dependencies: [
-        "Firebase",
-        "FirebaseAnalyticsTarget",
-        "_FirebaseMLModelDownloader",
-        "_GoogleDataTransport",
-        "_SwiftProtobuf"
-      ],
-      path: "Sources/FirebaseMLModelDownloader"
-    ),
+    // .target(
+    //   name: "FirebaseMLModelDownloaderTarget",
+    //   dependencies: [
+    //     "Firebase",
+    //     "FirebaseAnalyticsTarget",
+    //     "_FirebaseMLModelDownloader",
+    //     "_GoogleDataTransport",
+    //     "_SwiftProtobuf"
+    //   ],
+    //   path: "Sources/FirebaseMLModelDownloader"
+    // ),
     .target(
       name: "FirebaseMessagingTarget",
       dependencies: [
@@ -544,11 +544,11 @@ let package = Package(
       url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.23.0/_RecaptchaInterop.xcframework.zip",
       checksum: "43be200bf4e1f809f6cf88143141b67bf487e0a8c7b6be21cd40590f36e333b6"
     ),
-    .binaryTarget(
-      name: "_SwiftProtobuf",
-      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.23.0/_SwiftProtobuf.xcframework.zip",
-      checksum: "fb3e49e21f1ca105ce0ba3bdead9c33f5ff13c1c50fff9edc89108a73b3666ef"
-    ),
+    // .binaryTarget(
+    //   name: "_SwiftProtobuf",
+    //   url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.23.0/_SwiftProtobuf.xcframework.zip",
+    //   checksum: "fb3e49e21f1ca105ce0ba3bdead9c33f5ff13c1c50fff9edc89108a73b3666ef"
+    // ),
     .binaryTarget(
       name: "_UserMessagingPlatform",
       url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.23.0/_UserMessagingPlatform.xcframework.zip",

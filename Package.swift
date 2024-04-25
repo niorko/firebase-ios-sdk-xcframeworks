@@ -386,11 +386,11 @@ let package = Package(
 //      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.24.0/_FirebaseAuthInterop.xcframework.zip",
 //      checksum: "87af4d21715e254d45692a4e6a42d375f38163dd90bff07965acbb6f32d28734"
 //    ),
-//    .binaryTarget(
-//      name: "_FirebaseCore",
-//      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.24.0/_FirebaseCore.xcframework.zip",
-//      checksum: "d8e26f97b1a6f4a7cadc9e667d3399c0aca46b438e86e3811c31d1ddc5a2bc2b"
-//    ),
+    .binaryTarget(
+      name: "_FirebaseCore",
+      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.24.0/_FirebaseCore.xcframework.zip",
+      checksum: "d8e26f97b1a6f4a7cadc9e667d3399c0aca46b438e86e3811c31d1ddc5a2bc2b"
+    ),
 //    .binaryTarget(
 //      name: "_FirebaseCoreExtension",
 //      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.24.0/_FirebaseCoreExtension.xcframework.zip",
@@ -436,11 +436,11 @@ let package = Package(
 //      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.24.0/_FirebaseInAppMessaging.xcframework.zip",
 //      checksum: "b46768d60b81a1f18c279b284b307511c64788e79ba64dc2e57d06c0ecb6b7da"
 //    ),
-//    .binaryTarget(
-//      name: "_FirebaseInstallations",
-//      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.24.0/_FirebaseInstallations.xcframework.zip",
-//      checksum: "ebed4be23e6caf5dab8909ed5d88f95c596a8c4186a9660ad402fd7fec84b8dd"
-//    ),
+    .binaryTarget(
+      name: "_FirebaseInstallations",
+      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.24.0/_FirebaseInstallations.xcframework.zip",
+      checksum: "ebed4be23e6caf5dab8909ed5d88f95c596a8c4186a9660ad402fd7fec84b8dd"
+    ),
 //    .binaryTarget(
 //      name: "_FirebaseMLModelDownloader",
 //      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.24.0/_FirebaseMLModelDownloader.xcframework.zip",

@@ -9,7 +9,6 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 struct FirestoreView: View {
     @StateObject private var viewModel = FirestoreViewModel()

@@ -535,11 +535,11 @@ let package = Package(
       url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.29.0/_RecaptchaInterop.xcframework.zip",
       checksum: "1efb7cab87c50689e0d181e6071951a49db3080c53acd672f67942b1bfe85154"
     ),
-    .binaryTarget(
-      name: "_SwiftProtobuf",
-      url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.29.0/_SwiftProtobuf.xcframework.zip",
-      checksum: "01820b6b6fb66449a966ddf25faf6f380cedc6d7ae4ac8917e7f4cc3e9449da9"
-    ),
+    //.binaryTarget(
+    //  name: "_SwiftProtobuf",
+    //  url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.29.0/_SwiftProtobuf.xcframework.zip",
+    //  checksum: "01820b6b6fb66449a966ddf25faf6f380cedc6d7ae4ac8917e7f4cc3e9449da9"
+    //),
     .binaryTarget(
       name: "_UserMessagingPlatform",
       url: "https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks/releases/download/10.29.0/_UserMessagingPlatform.xcframework.zip",

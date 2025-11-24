@@ -260,11 +260,50 @@ generate_swift_package () {
     template_replace $package "// GENERATE BINARIES" $binaries; rm -f $binaries
 }
 
+find_and_extract_firebase_zip() {
+    echo "Looking for downloaded Firebase zip..."
+    
+    # Find the zip file and ensure it's called Firebase.zip
+    zip_file=$(find . -name "*.zip" | head -n 1)
+    
+    if [ -n "$zip_file" ]; then
+        echo "Found downloaded zip file: $zip_file"
+        mv "$zip_file" "Firebase.zip"
+        unzip -q Firebase.zip
+    else
+        echo "No downloaded zip file found in root directory. Exiting."
+        exit 1
+    fi
+    
+    # If there's no Firebase folder at the root, look for a relevant zip file and unzip it
+    if [ ! -d "Firebase" ]; then
+        echo "Firebase directory not found in root. Looking for zip file in subdirectories..."
+        # Look for Firebase zip files in subdirectories (excluding carthage)
+        for dir in */; do
+            if [ -d "$dir" ] && [ "$dir" != "carthage/" ]; then
+                firebase_zip=$(find "$dir" -name "Firebase*.zip" | head -n 1)
+                if [ -n "$firebase_zip" ]; then
+                    echo "Found Firebase zip in $dir: $firebase_zip"
+                    unzip -q "$firebase_zip"
+                    break
+                fi
+            fi
+        done
+        # Did we find the right Firebase directory?
+        if [ ! -d "Firebase" ]; then
+            echo "Firebase directory not found in any subdirectory. Exiting."
+            exit 1
+        fi
+    fi
+    
+    echo "Firebase zip found and extracted successfully"
+}
+
 commit_changes() {
     branch=$1
     git checkout -b $branch
     git add .
-    git commit -m"Updated Package.swift and sources for latest firebase sdks"
+    git commit -m"Updated Package.swift and sources for latest firebase sdks - ${branch#release/}"
     git push -u origin $branch
     gh pr create --fill
 }
@@ -299,8 +338,8 @@ if [[ $latest != $current || $debug ]]; then
         home=$OLDPWD
         echo "Downloading latest release..."
         gh release download --pattern 'Firebase.zip' --repo $firebase_repo
-        echo "Unzipping.."
-        unzip -q Firebase.zip
+        
+        find_and_extract_firebase_zip
         echo "Preparing xcframeworks for distribution..."
         cd Firebase
         rename_frameworks "_"
@@ -334,8 +373,19 @@ if [[ $latest != $current || $debug ]]; then
     # Deploy to repository
     echo "Merging changes to Github..."
     commit_changes "release/$latest"
-    echo "Creating release draft"
-    echo "Release $latest" | gh release create --target "release/$latest" --draft $latest $scratch/dist/*.xcframework.zip
+
+    # Tag this commit to enable automatic release creation
+    if git rev-parse "$latest" >/dev/null 2>&1; then
+        echo "Tag $latest already exists. Skipping."
+    else
+        # Tag the current commit with the version
+        git tag "$latest"
+        # Push the tag to the remote repository
+        git push origin "$latest"
+    fi
+
+    echo "Creating release"
+    echo "Release $latest" | gh release create --target "release/$latest" --title "Release $latest" $latest $scratch/dist/*.xcframework.zip
 else
     echo "$current is up to date."
 fi
